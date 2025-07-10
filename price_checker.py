@@ -27,7 +27,8 @@ print("🔍 Checking for price alerts...")
 
 def check_prices():
     # Step 1: Fetch all tracking records
-    response = supabase.table("track_data").select("*").execute()
+    response = supabase.table("track_data").select("*").eq("notified", False).execute()
+
     if not response.data:
         print("❌ Failed to fetch data from Supabase.")
         return
